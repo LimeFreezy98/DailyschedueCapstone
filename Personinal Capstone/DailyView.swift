@@ -24,8 +24,8 @@ struct DailyView: View {
             if let logs = localEvent.logs {
                 var localLogs = logs
                 List {
-                    ForEach(localLogs) { index in
-                        DailyCell()
+                    ForEach(localLogs) { log in
+                        DailyCell(log: log)
                     }
                     .onDelete(perform: { indexSet in
     //                     Handle deletion logic here:
@@ -79,31 +79,31 @@ struct DailyView: View {
 
 struct DailyCell: View {
     @State private var notificationEnabled = false
-//    var log: Log
+    var log: Log
     
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Title")
-                    .font(.headline)
-                Spacer()
-                Toggle(isOn: $notificationEnabled) {
-                    Text("Notifications")
-                }
-            }
-            HStack {
-                Text("Start:")
-                    .font(.subheadline)
-                Text("9:00 AM")
-                    .foregroundColor(.gray)
-            }
-            HStack {
-                Text("End:")
-                    .font(.subheadline)
-                Text("10:00 AM")
-                    .foregroundColor(.gray)
-            }
-        }
-    }
-}
+           VStack(alignment: .leading) {
+               HStack {
+                   Text(log.title)  // Display the log's title
+                       .font(.headline)
+                   Spacer()
+                   Toggle(isOn: $notificationEnabled) {
+                       Text("Notifications")
+                   }
+               }
+               HStack {
+                   Text("Start:")
+                       .font(.subheadline)
+                   Text(log.startTime, style: .time)  // Display the log's start time
+                       .foregroundColor(.gray)
+               }
+               HStack {
+                   Text("End:")
+                       .font(.subheadline)
+                   Text(log.endTime, style: .time)  // Display the log's end time
+                       .foregroundColor(.gray)
+               }
+           }
+       }
+   }
