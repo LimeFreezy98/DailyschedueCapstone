@@ -11,7 +11,7 @@ struct DailyView: View {
     
 //    var event Event
     // declare Event
-    @State var localEvent: Event
+    @Binding var localEvent: Event
     
     @State private var startTime = Date()
     @State private var endTime = Date()

@@ -23,7 +23,7 @@ struct ContentView: View {
         NavigationView {
             
             List {
-                ForEach(eventStorage.events) { event in
+                ForEach($eventStorage.events) { event in
                     NavigationLink(destination: DailyView(localEvent: event)) {
                         ScheduleCell(event: event)
                     }
@@ -55,7 +55,7 @@ struct ContentView: View {
 
   struct ScheduleCell: View {
       @State private var notificationEnabled = false
-      var event: Event
+      @Binding var event: Event
       
       var body: some View {
           VStack(alignment: .leading) {
