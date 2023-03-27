@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct Personinal_CapstoneApp: App {
+    
     var body: some Scene {
+        
         WindowGroup {
             ContentView()
         }
