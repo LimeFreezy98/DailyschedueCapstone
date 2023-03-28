@@ -35,9 +35,9 @@ struct ContentView: View {
                         ScheduleCell(event: event)
                     }
 
-                    NavigationLink(destination: DailyView(localEvent: event)) {
-                        
-                    }
+//                    NavigationLink(destination: DailyView(localEvent: event)) {
+//                        
+//                    }
                 }
                 .onDelete(perform: { indexSet in
                     // Handle deletion logic here
