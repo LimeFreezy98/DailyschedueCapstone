@@ -32,6 +32,7 @@ struct DailyView: View {
                         
                         
                         localLogs.remove(atOffsets: indexSet)
+                        self.localEvent.logs = localLogs
                     })
                     .overlay(
                         Group {
