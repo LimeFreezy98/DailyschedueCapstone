@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
     @State var eventStorage = Events()
+    @State private var editMode: EditMode = .inactive
     
     /*
      create test event
@@ -24,8 +25,18 @@ struct ContentView: View {
             
             List {
                 ForEach($eventStorage.events) { event in
-                    NavigationLink(destination: DailyView(localEvent: event)) {
+                    NavigationLink {
+                        if editMode == .inactive {
+                            DailyView(localEvent: event)
+                        } else {
+                            AddEditView(events: $eventStorage)
+                        }
+                    } label: {
                         ScheduleCell(event: event)
+                    }
+
+                    NavigationLink(destination: DailyView(localEvent: event)) {
+                        
                     }
                 }
                 .onDelete(perform: { indexSet in
@@ -49,6 +60,7 @@ struct ContentView: View {
                     Image(systemName: "plus")
                 }
             )
+            .environment(\.editMode, $editMode)
         }
     }
 }
