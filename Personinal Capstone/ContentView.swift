@@ -6,7 +6,7 @@
 //a
 
 import SwiftUI
-
+import UserNotifications
 struct ContentView: View {
 
     @State var eventStorage = Events()
@@ -36,7 +36,7 @@ struct ContentView: View {
                     }
 
 //                    NavigationLink(destination: DailyView(localEvent: event)) {
-//                        
+//  bug  cause extra cells
 //                    }
                 }
                 .onDelete(perform: { indexSet in

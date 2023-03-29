@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UserNotifications
 struct DailyView: View {
     
 //    var event Event
@@ -82,29 +82,54 @@ struct DailyCell: View {
     @State private var notificationEnabled = false
     var log: Log
     
-    
     var body: some View {
-           VStack(alignment: .leading) {
-               HStack {
-                   Text(log.title)  // Display the log's title
-                       .font(.headline)
-                   Spacer()
-                   Toggle(isOn: $notificationEnabled) {
-                       Text("Notifications")
-                   }
-               }
-               HStack {
-                   Text("Start:")
-                       .font(.subheadline)
-                   Text(log.startTime, style: .time)  // Display the log's start time
-                       .foregroundColor(.gray)
-               }
-               HStack {
-                   Text("End:")
-                       .font(.subheadline)
-                   Text(log.endTime, style: .time)  // Display the log's end time
-                       .foregroundColor(.gray)
-               }
-           }
-       }
-   }
+        VStack(alignment: .leading) {
+            HStack {
+                Text(log.title)  // Display the log's title
+                    .font(.headline)
+                Spacer()
+                Toggle(isOn: $notificationEnabled) {
+                    Text("Notifications")
+                }
+            }
+            HStack {
+                Text("Start:")
+                    .font(.subheadline)
+                Text(log.startTime, style: .time)  // Display the log's start time
+                    .foregroundColor(.gray)
+                Spacer()
+                Button(action: {
+                    addNotification(title: "It's time to do \(log.title)!")
+                }) {
+                    
+                }
+            }
+            HStack {
+                Text("End:")
+                    .font(.subheadline)
+                Text(log.endTime, style: .time)  // Display the log's end time
+                    .foregroundColor(.gray)
+                Spacer()
+                Button(action: {
+                    addNotification(title: "Your \(log.title) is done for now.")
+                }) {
+                    
+                }
+            }
+        }
+    }
+    
+    func addNotification(title: String) {
+        guard notificationEnabled else {
+            return  // If notifications are not enabled, return early
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+}
