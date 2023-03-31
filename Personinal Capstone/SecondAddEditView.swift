@@ -99,7 +99,7 @@ struct SecondAddEditView: View {
                 }
             }
             .padding()
-            .navigationBarTitle("Add Daily")
+            .navigationBarTitle("Add/Edit Daily")
         }
     }
     private func timeString(date: Date) -> String {

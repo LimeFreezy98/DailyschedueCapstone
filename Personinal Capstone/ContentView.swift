@@ -17,6 +17,12 @@ struct ContentView: View {
     var newEvent = Event(title: "test title", date: Date())
     eventStorage.events.append(newEvent)
     */
+    
+    
+//    func saveEvent() {
+//        let event = Event(id: Int(Date().timeIntervalSince(<#T##date: Date##Date#>)))
+//    }
+    
     var body: some View {
         
         
@@ -62,6 +68,9 @@ struct ContentView: View {
             )
             .environment(\.editMode, $editMode)
         }
+        .onAppear(perform: {
+            Events.loadEvents()
+        })
     }
 }
 

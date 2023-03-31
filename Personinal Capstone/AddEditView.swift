@@ -73,7 +73,7 @@ struct AddEditView: View {
                 }
             }
             .padding()
-            .navigationBarTitle("Add Task")
+            .navigationBarTitle("Add/Edit Task")
             //                .navigationBarItems(trailing:
             //                    Button(action: {
             //                        // Save task and dismiss view
