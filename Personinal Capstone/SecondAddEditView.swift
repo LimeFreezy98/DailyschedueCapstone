@@ -80,11 +80,24 @@ struct SecondAddEditView: View {
                         
                         //create a log object & add it to current event's log array eventStorage.events
                         
-                        let newLog = Log(title: self.dailyTitle, startTime: self.dailyStartDate, endTime: self.dailyEndDate)
+                        let newLog = Log(id: Int(Date().timeIntervalSince1970), title: self.dailyTitle, startTime: self.dailyStartDate, endTime: self.dailyEndDate)
 //                         Save task and dismiss view
 //                        logs.logs?.append(newLog)
-                        logs.addlog(log: newLog)
+                        //logs.addlog(log: newLog)
                         
+                        for index in Events.events.indices {
+                            print("Events ID: \(Events.events[index].id), Logs ID: \(logs.id)")
+                            if Events.events[index].id == logs.id {
+                                
+                                if Events.events[index].logs == nil {
+                                    Events.events[index].logs = [newLog]
+                                } else {
+                                    Events.events[index].logs?.append(newLog)
+                                }
+                                Events.saveEvents(newEvent: nil)
+                                break
+                            }
+                        }
                         
                         self.presentationMode.wrappedValue.dismiss()
                     }) {

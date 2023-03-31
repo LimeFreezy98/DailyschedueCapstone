@@ -3,4 +3,230 @@
    uuid = "669DD949-1ACB-4531-A64B-ECAA9126406B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B344E5A4-848E-4908-8C01-39BD0F3ECB1B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/AddEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B344E5A4-848E-4908-8C01-39BD0F3ECB1B - 6e0943eb1a06b61f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Personinal_Capstone.AddEditView.body.getter : some"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/AddEditView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "B344E5A4-848E-4908-8C01-39BD0F3ECB1B - d9bc19f0fe78c98a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0 in Personinal_Capstone.AddEditView.body.getter : some"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/AddEditView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "368">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "875230DA-8CD9-43FD-A286-38D370D64A48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/AddEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "AddEditView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "875230DA-8CD9-43FD-A286-38D370D64A48 - cbdd9f57dfb7302d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Personinal_Capstone.AddEditView.taskDate : Foundation.Date"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/AddEditView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "875230DA-8CD9-43FD-A286-38D370D64A48 - 661e7f637745b6b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Personinal_Capstone.AddEditView.init(presentationMode: SwiftUI.Environment&lt;SwiftUI.Binding&lt;SwiftUI.PresentationMode&gt;&gt;, events: SwiftUI.Binding&lt;Personinal_Capstone.Events&gt;) -&gt; Personinal_Capstone.AddEditView"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/AddEditView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34D05C45-6CB0-4015-A531-4374A75A5FD8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/DailyView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "DailyView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A399051-477F-4975-83C5-0C68AA044988"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/DailyView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "2A399051-477F-4975-83C5-0C68AA044988 - 814e46d0798494f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Personinal_Capstone.DailyView.body.getter : some"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/DailyView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1456">
+               </Location>
+               <Location
+                  uuid = "2A399051-477F-4975-83C5-0C68AA044988 - cdf536c9599b3ca2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; SwiftUI.Image in Personinal_Capstone.DailyView.body.getter : some"
+                  moduleName = "Personinal Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vasiliy/Desktop/Personinal%20Capstone/Personinal%20Capstone/DailyView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "608F40F7-CE1E-40B8-81FB-81780B8AC248"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/DailyView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4683FCAD-9040-44FA-ACAB-7A8C7CD93ED6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/SecondAddEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F360902E-CDC6-48CE-8F67-EF60422AE2E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/SecondAddEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60FD8503-B6AD-4227-A52B-1005692040AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Personinal Capstone/AddEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

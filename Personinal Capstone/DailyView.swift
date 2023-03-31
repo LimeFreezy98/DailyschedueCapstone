@@ -51,28 +51,16 @@ struct DailyView: View {
                     )
                 }
             }
-//            List {
-//                ForEach(localEvent.logs ?? [Log(title: "placeholder", startTime: Date(), endTime: Date())]) { index in
-//                    DailyCell()
-//                }
-//                .onDelete(perform: { indexSet in
-////                     Handle deletion logic here:
-//
-//
-//                    localEvent.logs.remove(atOffsets: indexSet)
-//                })
-//                .overlay(
-//                    Group {
-//                        if localEvent.logs.isEmpty {
-//                            Text("No data")
-//                        } else {
-//                            EmptyView()
-//                        }
-//                    }
-//                )
-//            }
         }
-        
+        .onAppear(perform: {
+            Events.loadEvents()
+            for index in Events.events.indices {
+                if Events.events[index].id == localEvent.id {
+                    localEvent = Events.events[index]
+                }
+            }
+           
+        })
         .navigationBarTitle(Text("Daily"))
         .navigationBarItems(
             trailing:
@@ -81,6 +69,7 @@ struct DailyView: View {
                 }
         )
     }
+    
 }
 
 

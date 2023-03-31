@@ -13,7 +13,7 @@ struct AddEditView: View {
     @State private var taskTitle = ""
     @State private var taskDate = Date()
     @State private var showDatePicker = false
-    @Binding var events: Events
+    @Binding var events: [Event]
 //    @State private var editdatastore
     var body: some View {
         NavigationView {
@@ -55,11 +55,13 @@ struct AddEditView: View {
                 Section {
                     Button(action: {
                         // Create event object and add to events array on
-                        let newEvent = Event(title: self.taskTitle, date: self.taskDate, logs: nil)
+                        let newEvent = Event(id: Int(Date().timeIntervalSince1970), title: self.taskTitle, date: self.taskDate, logs: nil)
                         //                            eventStorage.events.append(newEvent)
-                        events.events.append(newEvent)
-                        
+                        //events.events.append(newEvent)
+                        Events.saveEvents(newEvent: newEvent)
+
                         // Save task and dismiss view
+                        
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Done")

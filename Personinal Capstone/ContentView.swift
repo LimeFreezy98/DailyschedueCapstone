@@ -9,7 +9,7 @@ import SwiftUI
 import UserNotifications
 struct ContentView: View {
 
-    @State var eventStorage = Events()
+    @State var eventStorage = Events.events
     @State private var editMode: EditMode = .inactive
     @State private var showDetail = false
     /*
@@ -30,7 +30,7 @@ struct ContentView: View {
         NavigationView {
             
             List {
-                ForEach($eventStorage.events) { event in
+                ForEach($eventStorage) { event in
                     NavigationLink {
                         if editMode == .inactive {
                             DailyView(localEvent: event)
@@ -47,11 +47,13 @@ struct ContentView: View {
                 }
                 .onDelete(perform: { indexSet in
                     // Handle deletion logic here
-                    eventStorage.events.remove(atOffsets: indexSet)
+                    eventStorage.remove(atOffsets: indexSet)
+                    Events.events = eventStorage
+                    Events.saveEvents(newEvent: nil)
                 })
                 .overlay(
                     Group {
-                        if eventStorage.events.isEmpty {
+                        if eventStorage.isEmpty {
                             Text("No data")
                         } else {
                             EmptyView()
@@ -67,10 +69,14 @@ struct ContentView: View {
                 }
             )
             .environment(\.editMode, $editMode)
+            .onAppear(perform: {
+                print("on appear fired")
+                Events.loadEvents()
+                eventStorage = Events.events
+            })
         }
-        .onAppear(perform: {
-            Events.loadEvents()
-        })
+
+        
     }
 }
 
@@ -97,7 +103,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(eventStorage: eventStorage)
+        ContentView(eventStorage: Events.events)
     }
 }
 
