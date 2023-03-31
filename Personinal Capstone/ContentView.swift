@@ -11,7 +11,7 @@ struct ContentView: View {
 
     @State var eventStorage = Events()
     @State private var editMode: EditMode = .inactive
-    
+    @State private var showDetail = false
     /*
      create test event
     var newEvent = Event(title: "test title", date: Date())

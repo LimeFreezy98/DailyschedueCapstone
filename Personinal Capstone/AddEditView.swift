@@ -14,7 +14,7 @@ struct AddEditView: View {
     @State private var taskDate = Date()
     @State private var showDatePicker = false
     @Binding var events: Events
-    
+//    @State private var editdatastore
     var body: some View {
         NavigationView {
             List {

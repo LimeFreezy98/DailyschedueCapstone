@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import UIKit
 struct DailyView: View {
     
 //    var event Event
@@ -25,12 +26,17 @@ struct DailyView: View {
                 var localLogs = logs
                 List {
                     ForEach(localLogs) { log in
-                        DailyCell(log: log)
+                        NavigationLink {
+                            SecondAddEditView(logs: $localEvent)
+                        } label: {
+                            DailyCell(event: $localEvent, log: log)
+                        }
                     }
+                    
                     .onDelete(perform: { indexSet in
     //                     Handle deletion logic here:
                         
-                        
+//                        var localLogs = logs
                         localLogs.remove(atOffsets: indexSet)
                         self.localEvent.logs = localLogs
                     })
@@ -80,6 +86,7 @@ struct DailyView: View {
 
 struct DailyCell: View {
     @State private var notificationEnabled = false
+    @Binding var event: Event
     var log: Log
     
     var body: some View {
@@ -116,6 +123,8 @@ struct DailyCell: View {
                     
                 }
             }
+        } .onTapGesture {
+            let secondaddeditview = SecondAddEditView(logs: $event)
         }
     }
     
