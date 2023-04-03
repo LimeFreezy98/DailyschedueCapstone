@@ -38,7 +38,9 @@ struct DailyView: View {
                         
 //                        var localLogs = logs
                         localLogs.remove(atOffsets: indexSet)
+                        print(localEvent.logs)
                         self.localEvent.logs = localLogs
+                        print(localEvent.logs)
                     })
                     .overlay(
                         Group {
