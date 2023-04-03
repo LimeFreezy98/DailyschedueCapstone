@@ -27,7 +27,7 @@ struct DailyView: View {
                 List {
                     ForEach(localLogs) { log in
                         NavigationLink {
-                            SecondAddEditView(logs: $localEvent)
+                            SecondAddEditView(logs: $localEvent, logID: log.id)
                         } label: {
                             DailyCell(event: $localEvent, log: log)
                         }
@@ -64,7 +64,7 @@ struct DailyView: View {
         .navigationBarTitle(Text("Daily"))
         .navigationBarItems(
             trailing:
-                NavigationLink(destination: SecondAddEditView(logs: $localEvent)) {
+                NavigationLink(destination: SecondAddEditView(logs: $localEvent, logID: 0)) {
                     Image(systemName: "plus")
                 }
         )
@@ -75,8 +75,10 @@ struct DailyView: View {
 
 struct DailyCell: View {
     @State private var notificationEnabled = false
+    
     @Binding var event: Event
     var log: Log
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -113,7 +115,7 @@ struct DailyCell: View {
                 }
             }
         } .onTapGesture {
-            let secondaddeditview = SecondAddEditView(logs: $event)
+            let secondaddeditview = SecondAddEditView(logs: $event, logID: log.id)
         }
     }
     

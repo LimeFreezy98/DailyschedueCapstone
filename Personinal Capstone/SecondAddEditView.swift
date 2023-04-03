@@ -16,6 +16,7 @@ struct SecondAddEditView: View {
     @State private var showStartTimePicker = false
     @State private var showEndTimePicker = false
     @Binding var logs: Event
+    var logID: Int
     
     
     
@@ -85,10 +86,14 @@ struct SecondAddEditView: View {
 //                        logs.logs?.append(newLog)
                         //logs.addlog(log: newLog)
                         
+                        
                         for index in Events.events.indices {
-                            print("Events ID: \(Events.events[index].id), Logs ID: \(logs.id)")
+                            
+                            // Get the event that the log belongs to
                             if Events.events[index].id == logs.id {
                                 
+                                // if there are no log matches
+                                // handle there being no logs
                                 if Events.events[index].logs == nil {
                                     Events.events[index].logs = [newLog]
                                 } else {

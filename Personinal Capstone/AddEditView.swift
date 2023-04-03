@@ -14,6 +14,8 @@ struct AddEditView: View {
     @State private var taskDate = Date()
     @State private var showDatePicker = false
     @Binding var events: [Event]
+    var isEditMode: Bool
+    var eventId: Int
 //    @State private var editdatastore
     var body: some View {
         NavigationView {
@@ -58,8 +60,16 @@ struct AddEditView: View {
                         let newEvent = Event(id: Int(Date().timeIntervalSince1970), title: self.taskTitle, date: self.taskDate, logs: nil)
                         //                            eventStorage.events.append(newEvent)
                         //events.events.append(newEvent)
-                        Events.saveEvents(newEvent: newEvent)
-
+                        if isEditMode {
+                            for index in Events.events.indices {
+                                if Events.events[index].id == eventId {
+                                    Events.events[index] = newEvent
+                                    Events.saveEvents(newEvent: nil)
+                                }
+                            }
+                        } else {
+                            Events.saveEvents(newEvent: newEvent)
+                        }
                         // Save task and dismiss view
                         
                         self.presentationMode.wrappedValue.dismiss()

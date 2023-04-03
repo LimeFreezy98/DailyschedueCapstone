@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var eventStorage = Events.events
     @State private var editMode: EditMode = .inactive
     @State private var showDetail = false
+
     /*
      create test event
     var newEvent = Event(title: "test title", date: Date())
@@ -35,7 +36,7 @@ struct ContentView: View {
                         if editMode == .inactive {
                             DailyView(localEvent: event)
                         } else {
-                            AddEditView(events: $eventStorage)
+                            AddEditView(events: $eventStorage, isEditMode: true, eventId: event.id)
                         }
                     } label: {
                         ScheduleCell(event: event)
@@ -64,13 +65,12 @@ struct ContentView: View {
             .navigationBarTitle(Text("Schedule"))
             .navigationBarItems(
                 leading: EditButton(),
-                trailing: NavigationLink(destination: AddEditView(events: $eventStorage)) {
+                trailing: NavigationLink(destination: AddEditView(events: $eventStorage, isEditMode: false, eventId: 0)) {
                     Image(systemName: "plus")
                 }
             )
             .environment(\.editMode, $editMode)
             .onAppear(perform: {
-                print("on appear fired")
                 Events.loadEvents()
                 eventStorage = Events.events
             })
@@ -83,6 +83,8 @@ struct ContentView: View {
   struct ScheduleCell: View {
       @State private var notificationEnabled = false
       @Binding var event: Event
+      @State private var showAlert = false
+      
       
       var body: some View {
           VStack(alignment: .leading) {
@@ -90,7 +92,7 @@ struct ContentView: View {
                   Text(event.title)
                       .font(.headline)
                   Spacer()
-                  Toggle(isOn: $notificationEnabled) {
+                  Toggle(isOn: $event.notificationEnabled) {
                       Text("Notifications")
                   }
               }
@@ -100,6 +102,7 @@ struct ContentView: View {
           }
       }
   }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
