@@ -23,16 +23,7 @@ struct ContentView: View {
 //    func saveEvent() {
 //        let event = Event(id: Int(Date().timeIntervalSince(<#T##date: Date##Date#>)))
 //    }
-    func eventBinding(at index: Int) -> Binding<Event> {
-        .init {
-            eventStorage[index]
-        } set: { newEvent in
-            eventStorage[index] = newEvent
-            Events.events = eventStorage
-            Events.saveEvents(newEvent: nil)
-        }
-
-    }
+  
     
     var body: some View {
         
@@ -41,15 +32,15 @@ struct ContentView: View {
         NavigationView {
             
             List {
-                ForEach(0..<eventStorage.count, id: \.self) { index in
+                ForEach($eventStorage) { event in
                     NavigationLink {
                         if editMode == .inactive {
-                            DailyView(localEvent: eventBinding(at: index))
+                            DailyView(localEvent: event)
                         } else {
-                            AddEditView(events: $eventStorage, isEditMode: true, eventId: eventStorage[index].id)
+                            AddEditView(events: $eventStorage, isEditMode: true, eventId: event.id)
                         }
                     } label: {
-                        ScheduleCell(event: eventBinding(at: index))
+                        ScheduleCell(event: event)
                     }
 
 //                    NavigationLink(destination: DailyView(localEvent: event)) {

@@ -38,9 +38,12 @@ struct DailyView: View {
                         
 //                        var localLogs = logs
                         localLogs.remove(atOffsets: indexSet)
-                        print(localEvent.logs)
                         self.localEvent.logs = localLogs
-                        print(localEvent.logs)
+                        if let index = Events.events.firstIndex(where: { $0.id == localEvent.id }) {
+                            Events.events[index] = localEvent
+                        }
+                        Events.saveEvents(newEvent: nil)
+                       
                     })
                     .overlay(
                         Group {
