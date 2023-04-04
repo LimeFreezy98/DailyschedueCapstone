@@ -16,8 +16,9 @@ struct SecondAddEditView: View {
     @State private var showStartTimePicker = false
     @State private var showEndTimePicker = false
     @Binding var logs: Event
-    var logID: Int
-    
+    @State var editMode = false
+    @State var logID: Int
+
     
     
     var body: some View {
@@ -78,31 +79,42 @@ struct SecondAddEditView: View {
                 
                 Section {
                     Button(action: {
-                        
+                        if editMode  {
+                             var log = logs.logs?.first(where: { log in
+                                log.id == logID
+                            })
+                            log?.title = dailyTitle
+                            log?.startTime = dailyStartDate
+                            log?.endTime = dailyEndDate
+                            
+                        }
+                        else {
+                            let newLog = Log(id: Int(Date().timeIntervalSince1970), title: self.dailyTitle, startTime: self.dailyStartDate, endTime: self.dailyEndDate)
+                           //                         Save task and dismiss view
+                           //                        logs.logs?.append(newLog)
+                                                   //logs.addlog(log: newLog)
+                                                   
+                                                   
+                                                   for index in Events.events.indices {
+                                                       
+                                                       // Get the event that the log belongs to
+                                                       if Events.events[index].id == logs.id {
+                                                           
+                                                           // if there are no log matches
+                                                           // handle there being no logs
+                                                           if Events.events[index].logs == nil {
+                                                               Events.events[index].logs = [newLog]
+                                                           } else {
+                                                               Events.events[index].logs?.append(newLog)
+                                                           }
+                                                           Events.saveEvents(newEvent: nil)
+                                                           break
+                                                       }
+                                                   }
+                        }
                         //create a log object & add it to current event's log array eventStorage.events
                         
-                        let newLog = Log(id: Int(Date().timeIntervalSince1970), title: self.dailyTitle, startTime: self.dailyStartDate, endTime: self.dailyEndDate)
-//                         Save task and dismiss view
-//                        logs.logs?.append(newLog)
-                        //logs.addlog(log: newLog)
-                        
-                        
-                        for index in Events.events.indices {
-                            
-                            // Get the event that the log belongs to
-                            if Events.events[index].id == logs.id {
-                                
-                                // if there are no log matches
-                                // handle there being no logs
-                                if Events.events[index].logs == nil {
-                                    Events.events[index].logs = [newLog]
-                                } else {
-                                    Events.events[index].logs?.append(newLog)
-                                }
-                                Events.saveEvents(newEvent: nil)
-                                break
-                            }
-                        }
+                       
                         
                         self.presentationMode.wrappedValue.dismiss()
                     }) {

@@ -27,7 +27,7 @@ struct DailyView: View {
                 List {
                     ForEach(localLogs) { log in
                         NavigationLink {
-                            SecondAddEditView(logs: $localEvent, logID: log.id)
+                            SecondAddEditView(logs: $localEvent, editMode: true, logID: log.id)
                         } label: {
                             DailyCell(event: $localEvent, log: log)
                         }
@@ -38,12 +38,12 @@ struct DailyView: View {
                         
 //                        var localLogs = logs
                         localLogs.remove(atOffsets: indexSet)
-                        self.localEvent.logs = localLogs
+                        self.localEvent.logs = localLogs    //remind
                         if let index = Events.events.firstIndex(where: { $0.id == localEvent.id }) {
                             Events.events[index] = localEvent
                         }
                         Events.saveEvents(newEvent: nil)
-                       
+                       //remind 
                     })
                     .overlay(
                         Group {
