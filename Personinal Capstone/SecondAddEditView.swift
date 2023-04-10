@@ -36,6 +36,8 @@ struct SecondAddEditView: View {
                     }
                 }
                 
+
+                
                 Section {
                     Button(action: {
                         
@@ -80,13 +82,29 @@ struct SecondAddEditView: View {
                 Section {
                     Button(action: {
                         if editMode  {
-                             var log = logs.logs?.first(where: { log in
+                            guard
+                                let logIndex = logs.logs?.firstIndex(where: { log in
                                 log.id == logID
-                            })
-                            log?.title = dailyTitle
-                            log?.startTime = dailyStartDate
-                            log?.endTime = dailyEndDate
+                            }),
+                                var logCopy = logs.logs?[logIndex]
+                            else { fatalError() }
                             
+                            
+                            logCopy.title = dailyTitle
+                            logCopy.startTime = dailyStartDate
+                            logCopy.endTime = dailyEndDate
+                            
+                            // update binding
+                            logs.logs?[logIndex] = logCopy
+                            
+                            for index in Events.events.indices {
+                                if Events.events[index].id == logs.id {
+                                    // also update singleton because binding isn't propagating
+                                    Events.events[index].logs?[logIndex] = logCopy
+                                    Events.saveEvents(newEvent: nil)
+                                }
+                            }
+
                         }
                         else {
                             let newLog = Log(id: Int(Date().timeIntervalSince1970), title: self.dailyTitle, startTime: self.dailyStartDate, endTime: self.dailyEndDate)
