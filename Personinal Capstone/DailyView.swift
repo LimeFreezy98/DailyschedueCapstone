@@ -10,62 +10,54 @@ import UserNotifications
 import UIKit
 struct DailyView: View {
     
-//    var event Event
+    //    var event Event
     // declare Event
     @Binding var localEvent: Event
     
     @State private var startTime = Date()
     @State private var endTime = Date()
-//    @Binding var
-//    var event: Event
+    //    @Binding var
+    //    var event: Event
     
     
     var body: some View {
         NavigationView {
-            if let logs = localEvent.logs {
-                var localLogs = logs
-                List {
-                    ForEach(localLogs) { log in
-                        NavigationLink {
-                            SecondAddEditView(logs: $localEvent, editMode: true, logID: log.id)
-                        } label: {
-                            DailyCell(event: $localEvent, log: log)
+            List {
+                ForEach($localEvent.logs) { log in
+                    NavigationLink {
+                        SecondAddEditView(logs: $localEvent, editMode: true, logID: log.id)
+                    } label: {
+                        DailyCell(event: $localEvent, log: log)
+                    }
+                }
+                
+                .onDelete(perform: { indexSet in
+                    //                     Handle deletion logic here:
+                    
+                    //                        var localLogs = logs
+                    localEvent.logs.remove(atOffsets: indexSet)
+                    //remind
+                })
+                .overlay(
+                    Group {
+                        if localEvent.logs.isEmpty {
+                            Text("No data")
+                        } else {
+                            EmptyView()
                         }
                     }
-                    
-                    .onDelete(perform: { indexSet in
-    //                     Handle deletion logic here:
-                        
-//                        var localLogs = logs
-                        localLogs.remove(atOffsets: indexSet)
-                        self.localEvent.logs = localLogs    //remind
-                        if let index = Events.events.firstIndex(where: { $0.id == localEvent.id }) {
-                            Events.events[index] = localEvent
-                        }
-                        Events.saveEvents(newEvent: nil)
-                       //remind 
-                    })
-                    .overlay(
-                        Group {
-                            if localLogs.isEmpty {
-                                Text("No data")
-                            } else {
-                                EmptyView()
-                            }
-                        }
-                    )
-                }
+                )
             }
         }
-        .onAppear(perform: {
-            Events.loadEvents()
-            for index in Events.events.indices {
-                if Events.events[index].id == localEvent.id {
-                    localEvent = Events.events[index]
-                }
-            }
-           
-        })
+        //        .onAppear(perform: {
+        //            Events.loadEvents()
+        //            for index in Events.events.indices {
+        //                if Events.events[index].id == localEvent.id {
+        //                    localEvent = Events.events[index]
+        //                }
+        //            }
+        //
+        //        })
         .navigationBarTitle(Text("Daily"))
         .navigationBarItems(
             trailing:
@@ -79,10 +71,8 @@ struct DailyView: View {
 
 
 struct DailyCell: View {
-    @State private var notificationEnabled = false
-    
     @Binding var event: Event
-    var log: Log
+    @Binding var log: Log
     
     
     var body: some View {
@@ -91,7 +81,7 @@ struct DailyCell: View {
                 Text(log.title)  // Display the log's title
                     .font(.headline)
                 Spacer()
-                Toggle(isOn: $notificationEnabled) {
+                Toggle(isOn: $log.notificationEnabled) {
                     Text("Notifications")
                 }
             }
@@ -119,22 +109,84 @@ struct DailyCell: View {
                     
                 }
             }
-        } .onTapGesture {
+        }
+        .onTapGesture {
             let secondaddeditview = SecondAddEditView(logs: $event, logID: log.id)
+        }
+        .onChange(of: log.notificationEnabled) { newValue in
+            if newValue {
+                addNotification(title: log.title)
+            } else {
+                //TODO: Remove notification
+            }
         }
     }
     
+    
     func addNotification(title: String) {
-        guard notificationEnabled else {
-            return  // If notifications are not enabled, return early
+        authorizeIfNeeded { (granted) in
+            guard granted else {
+                //                DispatchQueue.main.async {
+                //                    completion(updatedBill)
+                //                }
+                
+                return
+            }
+            
+            guard log.notificationEnabled else {
+                return  // If notifications are not enabled, return early
+            }
+            
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = "its time to do \(log.title)"
+            
+            print("Start time: \(log.startTime)")
+            
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            let triggerDateComponents = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: log.startTime)
+            print("Components year: \(triggerDateComponents.year) month: \(triggerDateComponents.month) day: \(triggerDateComponents.day) hour: \(triggerDateComponents.hour) minute: \(triggerDateComponents.minute) second: \(triggerDateComponents.second)")
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request)
+            
+            let content2 = UNMutableNotificationContent()
+            content2.title = title
+            content2.body = "the \(log.title) is over for now!"
+            print("endtime: \(log.endTime)")
+            
+            let triggerDateComponents2 = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: log.endTime)
+            print("Components year: \(triggerDateComponents2.year) month: \(triggerDateComponents2.month) day: \(triggerDateComponents2.day) hour: \(triggerDateComponents2.hour) minute: \(triggerDateComponents2.minute) second: \(triggerDateComponents2.second)")
+            let trigger2 = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents2, repeats: false)
+            let request2 = UNNotificationRequest(identifier: UUID().uuidString, content: content2, trigger: trigger2)
+         
+            UNUserNotificationCenter.current().add(request2)
         }
         
-        let content = UNMutableNotificationContent()
-        content.title = title
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request)
+        func authorizeIfNeeded(completion: @escaping (Bool) -> ()) {
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.getNotificationSettings { (settings) in
+                switch settings.authorizationStatus {
+                case .authorized, .provisional:
+                    completion(true)
+                    
+                case .notDetermined:
+                    notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, _) in
+                        completion(granted)
+                    })
+                    
+                case .ephemeral:
+                    // only available to app clips
+                    completion(false)
+                    
+                case .denied:
+                    completion(false)
+                    
+                @unknown default:
+                    completion(false)
+                }
+            }
+        }
     }
 }

@@ -57,18 +57,15 @@ struct AddEditView: View {
                 Section {
                     Button(action: {
                         // Create event object and add to events array on
-                        let newEvent = Event(id: Int(Date().timeIntervalSince1970), title: self.taskTitle, date: self.taskDate, logs: nil)
+                        let newEvent = Event(id: Int(Date().timeIntervalSince1970), title: self.taskTitle, date: self.taskDate, logs: [])
                         //                            eventStorage.events.append(newEvent)
                         //events.events.append(newEvent)
                         if isEditMode {
-                            for index in Events.events.indices {
-                                if Events.events[index].id == eventId {
-                                    Events.events[index] = newEvent
-                                    Events.saveEvents(newEvent: nil)
-                                }
+                            if let eventIndex = events.firstIndex(where: { $0.id == eventId }) {
+                                events[eventIndex] = newEvent
                             }
                         } else {
-                            Events.saveEvents(newEvent: newEvent)
+                            events.append(newEvent)
                         }
                         // Save task and dismiss view
                         
