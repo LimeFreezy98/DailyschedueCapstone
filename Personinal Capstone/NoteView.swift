@@ -21,20 +21,18 @@ struct NoteView: View {
         NavigationView {
             List {
                 ForEach(notes) { note in
-                    NavigationLink(destination: NoteDetailView(note: note)) {
-                        NoteCell(note: note)
-                    }
+                    NoteCell(note: note)
+                        .listRowInsets(EdgeInsets())  // Add this line to remove the cell grouping
+                        .padding(.vertical, 8)  // Add vertical padding to create space between cells
                 }
                 .onDelete(perform: deleteNote)  // Enable deletion
-
-                // Add the navigation bar item
-                .navigationBarItems(trailing:
-                    NavigationLink(destination: AddNoteView(notes: $notes)) {
-                        Image(systemName: "plus")
-                    }
-                )
             }
             .navigationBarTitle("Notes")
+            .navigationBarItems(trailing:
+                NavigationLink(destination: AddNoteView(notes: $notes)) {
+                    Image(systemName: "plus")
+                }
+            )
         }
     }
 
@@ -53,19 +51,6 @@ struct NoteCell: View {
             Text(note.description)
                 .font(.subheadline)
         }
-    }
-}
-
-struct NoteDetailView: View {
-    let note: Note
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(note.title)
-                .font(.headline)
-            Text(note.description)
-                .font(.subheadline)
-        }
-        .navigationBarTitle(note.title)
+        .padding(.horizontal, 16)  // Add horizontal padding to center the content within the cell
     }
 }
