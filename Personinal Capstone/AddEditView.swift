@@ -14,6 +14,7 @@ struct AddEditView: View {
     @State private var taskDate = Date()
     @State private var showDatePicker = false
     @Binding var events: [Event]
+    @State private var isShowingAddEditView = false
     var isEditMode: Bool
     var eventId: Int
 //    @State private var editdatastore

@@ -66,10 +66,15 @@ struct ContentView: View {
             .navigationBarTitle(Text("Schedule"))
             .navigationBarItems(
                 leading: EditButton(),
-                trailing: NavigationLink(destination: AddEditView(events: $eventStorage, isEditMode: false, eventId: 0)) {
-                    Image(systemName: "plus")
-                }
-            )
+                  trailing: HStack {
+                      NavigationLink(destination: AddEditView(events: $eventStorage, isEditMode: false, eventId: 0)) {
+                          Image(systemName: "plus")
+                      }
+                      NavigationLink(destination: NoteView()) {
+                          Image(systemName: "note.text")
+                      }
+                  }
+              )
             .environment(\.editMode, $editMode)
 //            .onAppear(perform: {
 //                Events.loadEvents()
