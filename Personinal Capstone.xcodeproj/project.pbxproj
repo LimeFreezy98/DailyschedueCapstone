@@ -10,7 +10,6 @@
 		FFC9E98E29C219C200FB6B2A /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9E98D29C219C200FB6B2A /* DailyView.swift */; };
 		FFC9E99029C21C7500FB6B2A /* SecondAddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9E98F29C21C7500FB6B2A /* SecondAddEditView.swift */; };
 		FFC9E99229C4C29A00FB6B2A /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9E99129C4C29A00FB6B2A /* DataObject.swift */; };
-		FFC9E9B729D4990200FB6B2A /* CoreSedueleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFC9E9B529D4990200FB6B2A /* CoreSedueleData.xcdatamodeld */; };
 		FFD0B5EC29B0ECE600414252 /* Personinal_CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD0B5EB29B0ECE600414252 /* Personinal_CapstoneApp.swift */; };
 		FFD0B5EE29B0ECE600414252 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD0B5ED29B0ECE600414252 /* ContentView.swift */; };
 		FFD0B5F029B0ECE700414252 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD0B5EF29B0ECE700414252 /* Assets.xcassets */; };
@@ -22,7 +21,6 @@
 		FFC9E98D29C219C200FB6B2A /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
 		FFC9E98F29C21C7500FB6B2A /* SecondAddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddEditView.swift; sourceTree = "<group>"; };
 		FFC9E99129C4C29A00FB6B2A /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataObject.swift; path = ../../../../../Applications/DataObject.swift; sourceTree = "<group>"; };
-		FFC9E9B629D4990200FB6B2A /* CoreSedueleData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreSedueleData.xcdatamodel; sourceTree = "<group>"; };
 		FFD0B5E829B0ECE600414252 /* Personinal Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personinal Capstone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD0B5EB29B0ECE600414252 /* Personinal_CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personinal_CapstoneApp.swift; sourceTree = "<group>"; };
 		FFD0B5ED29B0ECE600414252 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 			children = (
 				FFD0B5EB29B0ECE600414252 /* Personinal_CapstoneApp.swift */,
 				FFD0B5ED29B0ECE600414252 /* ContentView.swift */,
-				FFC9E9B529D4990200FB6B2A /* CoreSedueleData.xcdatamodeld */,
 				FFC9E99129C4C29A00FB6B2A /* DataObject.swift */,
 				FFC9E98D29C219C200FB6B2A /* DailyView.swift */,
 				FFC9E98F29C21C7500FB6B2A /* SecondAddEditView.swift */,
@@ -155,7 +152,6 @@
 				FFC9E98E29C219C200FB6B2A /* DailyView.swift in Sources */,
 				FFD0B60329B9092D00414252 /* AddEditView.swift in Sources */,
 				FFD0B5EE29B0ECE600414252 /* ContentView.swift in Sources */,
-				FFC9E9B729D4990200FB6B2A /* CoreSedueleData.xcdatamodeld in Sources */,
 				FFD0B5EC29B0ECE600414252 /* Personinal_CapstoneApp.swift in Sources */,
 				FFC9E99229C4C29A00FB6B2A /* DataObject.swift in Sources */,
 				FFC9E99029C21C7500FB6B2A /* SecondAddEditView.swift in Sources */,
@@ -357,19 +353,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FFC9E9B529D4990200FB6B2A /* CoreSedueleData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FFC9E9B629D4990200FB6B2A /* CoreSedueleData.xcdatamodel */,
-			);
-			currentVersion = FFC9E9B629D4990200FB6B2A /* CoreSedueleData.xcdatamodel */;
-			path = CoreSedueleData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FFD0B5E029B0ECE600414252 /* Project object */;
 }
