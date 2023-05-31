@@ -15,38 +15,40 @@ struct ShoppingItem: Identifiable {
 }
 
 
-struct ShoppingListView: View {
-    @State private var items: [ShoppingItem] = [
-        ShoppingItem(name: "Milk", quantity: 10, isChecked: false),
+class ShoppingList: ObservableObject {
+    @Published var items: [ShoppingItem] = [
+//        ShoppingItem(name: "Milk", quantity: 10, isChecked: false), // test code
     ]
-    
+}
+
+struct ShoppingListView: View {
+    @StateObject private var shoppingList = ShoppingList()
+
     var body: some View {
-           NavigationView {
-               List {
-                   ForEach(items.indices) { index in
-                       ShoppingListCell(item: $items[index])
-                   }
-                   .onDelete(perform: deleteItems)
-               }
-               .navigationBarTitle("Shopping List")
-               .navigationBarItems(trailing:
-                   Button(action: {
-                       // Navigate to AddShoppingListView
-                   }) {
-                       Image(systemName: "plus")
-                   }
-               )
-           }
-       }
-       
-       private func deleteItems(at offsets: IndexSet) {
-           items.remove(atOffsets: offsets)
-       }
-   }
+        NavigationView {
+            List {
+                ForEach(shoppingList.items) { item in
+                    ShoppingListCell(item: item)
+                }
+                .onDelete(perform: deleteItems)
+            }
+            .navigationBarTitle("Shopping List")
+            .navigationBarItems(trailing:
+                NavigationLink(destination: AddShoppingListView(shoppingList: shoppingList)) {
+                    Image(systemName: "plus")
+                }
+            )
+        }
+    }
+
+    private func deleteItems(at offsets: IndexSet) {
+        shoppingList.items.remove(atOffsets: offsets)
+    }
+}
 
 struct ShoppingListCell: View {
-    @Binding var item: ShoppingItem
-    
+    @State var item: ShoppingItem
+
     var body: some View {
         HStack {
             Button(action: {
@@ -55,7 +57,7 @@ struct ShoppingListCell: View {
                 Image(systemName: item.isChecked ? "checkmark.circle.fill" : "circle")
             }
             .buttonStyle(PlainButtonStyle())
-            
+
             VStack(alignment: .leading) {
                 Text(item.name)
                     .foregroundColor(item.isChecked ? .gray : .primary)
@@ -66,8 +68,6 @@ struct ShoppingListCell: View {
         }
     }
 }
-
-
 //struct ShoppingListView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ShoppingListView()

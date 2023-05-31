@@ -65,9 +65,11 @@ struct DailyView: View {
                     NavigationLink(destination: SecondAddEditView(logs: $localEvent, logID: 0)) {
                         Image(systemName: "plus")
                     }
-                    Spacer()
                     NavigationLink(destination: ShoppingListView()) {
                         Image(systemName: "bag")
+                    }
+                    NavigationLink(destination: AthleticView()) {
+                        Image(systemName: "dumbbell")
                     }
                 }
         )

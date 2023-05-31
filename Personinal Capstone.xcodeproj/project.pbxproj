@@ -19,6 +19,8 @@
 		FFDC24232A2644DA00FFA8AC /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24222A2644DA00FFA8AC /* AddNoteView.swift */; };
 		FFDC24252A2771B900FFA8AC /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24242A2771B900FFA8AC /* ShoppingListView.swift */; };
 		FFDC24272A27804C00FFA8AC /* AddShopingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */; };
+		FFDC24292A27A3A700FFA8AC /* AthleticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24282A27A3A700FFA8AC /* AthleticView.swift */; };
+		FFDC242B2A27B7E900FFA8AC /* AddAthleticActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC242A2A27B7E900FFA8AC /* AddAthleticActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		FFDC24222A2644DA00FFA8AC /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		FFDC24242A2771B900FFA8AC /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopingListView.swift; sourceTree = "<group>"; };
+		FFDC24282A27A3A700FFA8AC /* AthleticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleticView.swift; sourceTree = "<group>"; };
+		FFDC242A2A27B7E900FFA8AC /* AddAthleticActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleticActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */,
 				FFC9E99129C4C29A00FB6B2A /* DataObject.swift */,
 				FFC9E98D29C219C200FB6B2A /* DailyView.swift */,
+				FFDC242A2A27B7E900FFA8AC /* AddAthleticActivityView.swift */,
+				FFDC24282A27A3A700FFA8AC /* AthleticView.swift */,
 				FFC9E98F29C21C7500FB6B2A /* SecondAddEditView.swift */,
 				FFD0B60229B9092D00414252 /* AddEditView.swift */,
 				FFD0B5EF29B0ECE700414252 /* Assets.xcassets */,
@@ -162,11 +168,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFDC24252A2771B900FFA8AC /* ShoppingListView.swift in Sources */,
+				FFDC24292A27A3A700FFA8AC /* AthleticView.swift in Sources */,
 				FFC9E98E29C219C200FB6B2A /* DailyView.swift in Sources */,
 				FFD0B60329B9092D00414252 /* AddEditView.swift in Sources */,
 				FFD0B5EE29B0ECE600414252 /* ContentView.swift in Sources */,
 				FFD0B5EC29B0ECE600414252 /* Personinal_CapstoneApp.swift in Sources */,
 				FFC9E99229C4C29A00FB6B2A /* DataObject.swift in Sources */,
+				FFDC242B2A27B7E900FFA8AC /* AddAthleticActivityView.swift in Sources */,
 				FFDC24212A26294800FFA8AC /* NoteView.swift in Sources */,
 				FFDC24272A27804C00FFA8AC /* AddShopingListView.swift in Sources */,
 				FFDC24232A2644DA00FFA8AC /* AddNoteView.swift in Sources */,
