@@ -17,6 +17,8 @@
 		FFD0B60329B9092D00414252 /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD0B60229B9092D00414252 /* AddEditView.swift */; };
 		FFDC24212A26294800FFA8AC /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24202A26294800FFA8AC /* NoteView.swift */; };
 		FFDC24232A2644DA00FFA8AC /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24222A2644DA00FFA8AC /* AddNoteView.swift */; };
+		FFDC24252A2771B900FFA8AC /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24242A2771B900FFA8AC /* ShoppingListView.swift */; };
+		FFDC24272A27804C00FFA8AC /* AddShopingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		FFD0B60229B9092D00414252 /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
 		FFDC24202A26294800FFA8AC /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		FFDC24222A2644DA00FFA8AC /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		FFDC24242A2771B900FFA8AC /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
+		FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopingListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				FFD0B5ED29B0ECE600414252 /* ContentView.swift */,
 				FFDC24202A26294800FFA8AC /* NoteView.swift */,
 				FFDC24222A2644DA00FFA8AC /* AddNoteView.swift */,
+				FFDC24242A2771B900FFA8AC /* ShoppingListView.swift */,
+				FFDC24262A27804C00FFA8AC /* AddShopingListView.swift */,
 				FFC9E99129C4C29A00FB6B2A /* DataObject.swift */,
 				FFC9E98D29C219C200FB6B2A /* DailyView.swift */,
 				FFC9E98F29C21C7500FB6B2A /* SecondAddEditView.swift */,
@@ -155,12 +161,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFDC24252A2771B900FFA8AC /* ShoppingListView.swift in Sources */,
 				FFC9E98E29C219C200FB6B2A /* DailyView.swift in Sources */,
 				FFD0B60329B9092D00414252 /* AddEditView.swift in Sources */,
 				FFD0B5EE29B0ECE600414252 /* ContentView.swift in Sources */,
 				FFD0B5EC29B0ECE600414252 /* Personinal_CapstoneApp.swift in Sources */,
 				FFC9E99229C4C29A00FB6B2A /* DataObject.swift in Sources */,
 				FFDC24212A26294800FFA8AC /* NoteView.swift in Sources */,
+				FFDC24272A27804C00FFA8AC /* AddShopingListView.swift in Sources */,
 				FFDC24232A2644DA00FFA8AC /* AddNoteView.swift in Sources */,
 				FFC9E99029C21C7500FB6B2A /* SecondAddEditView.swift in Sources */,
 			);

@@ -16,7 +16,7 @@ struct DailyView: View {
     
     @State private var startTime = Date()
     @State private var endTime = Date()
-    //    @Binding var
+//        @Binding var
     //    var event: Event
     
     
@@ -61,8 +61,14 @@ struct DailyView: View {
         .navigationBarTitle(Text("Daily"))
         .navigationBarItems(
             trailing:
-                NavigationLink(destination: SecondAddEditView(logs: $localEvent, logID: 0)) {
-                    Image(systemName: "plus")
+                HStack {
+                    NavigationLink(destination: SecondAddEditView(logs: $localEvent, logID: 0)) {
+                        Image(systemName: "plus")
+                    }
+                    Spacer()
+                    NavigationLink(destination: ShoppingListView()) {
+                        Image(systemName: "bag")
+                    }
                 }
         )
     }

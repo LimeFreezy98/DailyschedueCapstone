@@ -16,7 +16,8 @@ struct Note: Identifiable {
 
 struct NoteView: View {
     @State private var notes: [Note] = []  // Replace with your notes array
-
+//    @Binding var noteStorage: CoreNote
+    
     var body: some View {
         NavigationView {
             List {
