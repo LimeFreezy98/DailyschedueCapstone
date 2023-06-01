@@ -17,7 +17,7 @@ struct ShoppingItem: Identifiable {
 
 class ShoppingList: ObservableObject {
     @Published var items: [ShoppingItem] = [
-//        ShoppingItem(name: "Milk", quantity: 10, isChecked: false), // test code
+//        @Binding var eventStorage: Events
     ]
 }
 

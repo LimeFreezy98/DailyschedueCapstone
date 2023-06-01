@@ -17,12 +17,8 @@ struct AthleticActivity: Identifiable {
 }
 
 struct AthleticView: View {
-    
-    @State private var activities: [AthleticActivity] = [
-//        AthleticActivity(id: "1", name: "Running", duration: 30, isChecked: false),
-//        AthleticActivity(id: "2", name: "Weightlifting", duration: 45, isChecked: false),
-//        AthleticActivity(id: "3", name: "Yoga", duration: 60, isChecked: false)
-    ]
+//    @Binding var eventStorage: Events
+    @State private var activities: [AthleticActivity] = []
     
     var body: some View {
         NavigationView {
@@ -40,7 +36,9 @@ struct AthleticView: View {
             )
             .background(Color.blue.opacity(0.2))
         }
-       
+        .onAppear {
+            requestNotificationAuthorization()
+        }
     }
     
     private func getIndex(for activity: AthleticActivity) -> Int {
@@ -51,11 +49,47 @@ struct AthleticView: View {
     }
     
     private func deleteActivities(at offsets: IndexSet) {
+        let deletedActivityIdentifiers = offsets.map { activities[$0].id }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: deletedActivityIdentifiers)
         activities.remove(atOffsets: offsets)
     }
     
     private func addActivity(activity: AthleticActivity) {
         activities.append(activity)
+        scheduleNotification(for: activity)
+    }
+    
+    private func requestNotificationAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                print("Notification authorization granted")
+            } else {
+                print("Notification authorization denied")
+            }
+        }
+    }
+    
+    private func scheduleNotification(for activity: AthleticActivity) {
+        guard activity.notificationEnabled else {
+            return
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Activity Reminder"
+        content.body = "It's time for \(activity.title)!"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(activity.duration * 60), repeats: false)
+        
+        let request = UNNotificationRequest(identifier: activity.id, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error scheduling notification: \(error.localizedDescription)")
+            } else {
+                print("Notification scheduled for \(activity.title)")
+            }
+        }
     }
 }
 
@@ -85,8 +119,8 @@ struct AthleticListCell: View {
                 Text("Notification")
             }
         }
-//        .padding()
-//              .background(activity.isChecked ? Color.green.opacity(0.2) : Color.clear)
+        .padding()
+        .background(activity.isChecked ? Color.green.opacity(0.2) : Color.clear)
     }
 }
 
