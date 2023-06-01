@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct AthleticActivity: Identifiable {
-    let id = UUID()
+    var id: String
     var name: String
     var duration: Int
     var isChecked: Bool
@@ -16,31 +17,43 @@ struct AthleticActivity: Identifiable {
 }
 
 struct AthleticView: View {
+    
     @State private var activities: [AthleticActivity] = [
-//        AthleticActivity(name: "Running", duration: 30, isChecked: false),
-//        AthleticActivity(name: "Weightlifting", duration: 45, isChecked: false),
-//        AthleticActivity(name: "Yoga", duration: 60, isChecked: false)
+//        AthleticActivity(id: "1", name: "Running", duration: 30, isChecked: false),
+//        AthleticActivity(id: "2", name: "Weightlifting", duration: 45, isChecked: false),
+//        AthleticActivity(id: "3", name: "Yoga", duration: 60, isChecked: false)
     ]
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(activities.indices) { index in
-                    AthleticListCell(activity: $activities[index])
+                ForEach(activities) { activity in
+                    AthleticListCell(activity: $activities[getIndex(for: activity)])
                 }
                 .onDelete(perform: deleteActivities)
             }
-            .navigationBarTitle("Athletic View")
-            .navigationBarItems(trailing:
-                NavigationLink(destination: AddAthleticActivityView(activities: $activities)) {
+            .navigationBarTitle("Athletic")
+            .navigationBarItems(
+                trailing: NavigationLink(destination: AddAthleticActivityView(activities: $activities, addActivity: addActivity)) {
                     Image(systemName: "plus")
                 }
             )
         }
     }
     
+    private func getIndex(for activity: AthleticActivity) -> Int {
+        if let index = activities.firstIndex(where: { $0.id == activity.id }) {
+            return index
+        }
+        return 0
+    }
+    
     private func deleteActivities(at offsets: IndexSet) {
         activities.remove(atOffsets: offsets)
+    }
+    
+    private func addActivity(activity: AthleticActivity) {
+        activities.append(activity)
     }
 }
 
@@ -72,8 +85,6 @@ struct AthleticListCell: View {
         }
     }
 }
-
-
 
 //struct AthleticView_Previews: PreviewProvider {
 //    static var previews: some View {

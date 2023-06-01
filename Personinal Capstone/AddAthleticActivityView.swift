@@ -9,9 +9,12 @@ import SwiftUI
 
 struct AddAthleticActivityView: View {
     @Binding var activities: [AthleticActivity]
+    @State private var activityName = ""
+    @State private var duration = 0
+    @State private var notificationEnabled = false
     @Environment(\.presentationMode) var presentationMode
-    @State private var activityName: String = ""
-    @State private var activityDuration: String = ""
+    
+    let addActivity: (AthleticActivity) -> Void
     
     var body: some View {
         VStack {
@@ -19,39 +22,32 @@ struct AddAthleticActivityView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Duration (min)", text: $activityDuration)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .keyboardType(.numberPad)
-            
-            Button(action: addActivity) {
-                Text("Add Activity")
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+            Stepper(value: $duration, in: 0...120, step: 5) {
+                Text("Duration: \(duration) mins")
             }
             .padding()
             
-            Spacer()
+            Toggle(isOn: $notificationEnabled) {
+                Text("Enable Notification")
+            }
+            .padding()
+            
+            Button(action: {
+                let newActivity = AthleticActivity(id: UUID().uuidString, name: activityName, duration: duration, isChecked: false, notificationEnabled: notificationEnabled)
+                addActivity(newActivity)
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Add Activity")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
         }
-        .navigationBarTitle("Add Activity")
-    }
-    
-    private func addActivity() {
-        guard let duration = Int(activityDuration) else {
-            // Handle invalid duration input
-            return
-        }
-        
-        let newActivity = AthleticActivity(name: activityName, duration: duration, isChecked: false)
-        activities.append(newActivity)
-        
-        // Dismiss the AddAthleticActivityView and return to the AthleticView
-        presentationMode.wrappedValue.dismiss()
+        .padding()
     }
 }
+
 //struct AddAthleticActivityView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddAthleticActivityView()
