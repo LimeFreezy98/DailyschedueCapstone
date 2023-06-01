@@ -34,6 +34,7 @@ struct NoteView: View {
                     Image(systemName: "plus")
                 }
             )
+            .background(Color.cyan.opacity(0.2))
         }
     }
 

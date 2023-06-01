@@ -25,6 +25,7 @@ struct ShoppingListView: View {
     @StateObject private var shoppingList = ShoppingList()
 
     var body: some View {
+        
         NavigationView {
             List {
                 ForEach(shoppingList.items) { item in
@@ -38,6 +39,7 @@ struct ShoppingListView: View {
                     Image(systemName: "plus")
                 }
             )
+            .background(Color.green.opacity(0.2))
         }
     }
 

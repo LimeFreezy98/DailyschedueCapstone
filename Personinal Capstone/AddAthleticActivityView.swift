@@ -22,7 +22,8 @@ struct AddAthleticActivityView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            Stepper(value: $duration, in: 0...120, step: 5) {
+            
+            Stepper(value: $duration, in: 0...120, step: 1) {
                 Text("Duration: \(duration) mins")
             }
             .padding()
@@ -33,7 +34,7 @@ struct AddAthleticActivityView: View {
             .padding()
             
             Button(action: {
-                let newActivity = AthleticActivity(id: UUID().uuidString, name: activityName, duration: duration, isChecked: false, notificationEnabled: notificationEnabled)
+                let newActivity = AthleticActivity(id: UUID().uuidString, title: activityName, duration: duration, isChecked: false, notificationEnabled: notificationEnabled)
                 addActivity(newActivity)
                 presentationMode.wrappedValue.dismiss()
             }) {
@@ -42,9 +43,16 @@ struct AddAthleticActivityView: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .background(Color.blue.opacity(0.2))
             }
+            .background(Color.blue.opacity(0.2))
         }
         .padding()
+        .background(Color.blue.opacity(0.2))
+        .onDisappear {
+                   // Ensure the presentation mode is reset when the view disappears
+                   presentationMode.wrappedValue.dismiss()
+               }
     }
 }
 

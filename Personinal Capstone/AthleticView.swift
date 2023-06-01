@@ -10,7 +10,7 @@ import UserNotifications
 
 struct AthleticActivity: Identifiable {
     var id: String
-    var name: String
+    var title: String
     var duration: Int
     var isChecked: Bool
     var notificationEnabled: Bool = false
@@ -38,7 +38,9 @@ struct AthleticView: View {
                     Image(systemName: "plus")
                 }
             )
+            .background(Color.blue.opacity(0.2))
         }
+       
     }
     
     private func getIndex(for activity: AthleticActivity) -> Int {
@@ -70,7 +72,7 @@ struct AthleticListCell: View {
             .buttonStyle(PlainButtonStyle())
             
             VStack(alignment: .leading) {
-                Text(activity.name)
+                Text(activity.title)
                     .foregroundColor(activity.isChecked ? .gray : .primary)
                 Text("Duration: \(activity.duration) min")
                     .font(.subheadline)
@@ -83,6 +85,8 @@ struct AthleticListCell: View {
                 Text("Notification")
             }
         }
+//        .padding()
+//              .background(activity.isChecked ? Color.green.opacity(0.2) : Color.clear)
     }
 }
 

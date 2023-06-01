@@ -76,6 +76,7 @@ struct ContentView: View {
                   }
               )
             .environment(\.editMode, $editMode)
+            .background(Color.orange.opacity(0.2))
 //            .onAppear(perform: {
 //                Events.loadEvents()
 //                eventStorage = Events.events
