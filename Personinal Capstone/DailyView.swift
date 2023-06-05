@@ -38,6 +38,8 @@ struct DailyView: View {
                     localEvent.logs.remove(atOffsets: indexSet)
                     //remind
                 })
+//                .background(Color.blue.opacity(0.2))
+//                .scrollContentBackground(.hidden)
                 .overlay(
                     Group {
                         if localEvent.logs.isEmpty {
@@ -48,6 +50,9 @@ struct DailyView: View {
                     }
                 )
             }
+            .background(Color.blue.opacity(0.2))
+            .scrollContentBackground(.hidden)
+            
         }
         //        .onAppear(perform: {
         //            Events.loadEvents()
@@ -65,6 +70,7 @@ struct DailyView: View {
                     NavigationLink(destination: SecondAddEditView(logs: $localEvent, logID: 0)) {
                         Image(systemName: "plus")
                     }
+//                     NavigationLink(destination: ShoppingListView(shops: $shopStorage, ShopID: 0))
                     NavigationLink(destination: ShoppingListView()) {
                         Image(systemName: "bag")
                     }

@@ -12,12 +12,13 @@ struct Note: Identifiable {
     let id = UUID()
     let title: String
     let description: String
+//    var timestamp: Date
 }
 
 struct NoteView: View {
     @State private var notes: [Note] = []  // Replace with your notes array
-//    @Binding var eventStorage: Events
-//    @Binding var noteStorage: CoreNote
+//    @Binding var entryStorage: Event
+
     
     var body: some View {
         NavigationView {
@@ -35,7 +36,7 @@ struct NoteView: View {
                     Image(systemName: "plus")
                 }
             )
-            .background(Color.cyan.opacity(0.2))
+            .background(Color.blue.opacity(0.2))
         }
     }
 

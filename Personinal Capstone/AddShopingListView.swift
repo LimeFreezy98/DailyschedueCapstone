@@ -12,6 +12,8 @@ struct AddShoppingListView: View {
     @ObservedObject var shoppingList: ShoppingList
     @State private var itemName = ""
     @State private var itemQuantity = ""
+//    @State var ShopID: Int
+//    @Binding var shops: Event
 
     var body: some View {
         Form {
@@ -34,6 +36,7 @@ struct AddShoppingListView: View {
                 }
             }
         }
+        .background(Color.blue.opacity(0.2))
         .navigationBarTitle("Add Item")
     }
 }

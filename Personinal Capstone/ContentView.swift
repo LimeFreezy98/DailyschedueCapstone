@@ -63,6 +63,8 @@ struct ContentView: View {
                     }
                 )
             }
+            .scrollContentBackground(.hidden)
+                       .background(Color.blue.opacity(0.2))
             .navigationBarTitle(Text("Schedule"))
             .navigationBarItems(
                 leading: EditButton(),
@@ -76,14 +78,14 @@ struct ContentView: View {
                   }
               )
             .environment(\.editMode, $editMode)
-            .background(Color.orange.opacity(0.2))
 //            .onAppear(perform: {
 //                Events.loadEvents()
 //                eventStorage = Events.events
 //            })
         }
-
         
+        .background(Color.blue.opacity(0.2))
+        .scrollContentBackground(.hidden)
     }
 }
 
@@ -98,6 +100,8 @@ struct ScheduleCell: View {
                 Text(event.title)
                     .font(.headline)
                 Spacer()
+                    .background(Color.blue.opacity(0.2))
+                    .scrollContentBackground(.hidden)
                 Toggle(isOn: $event.notificationEnabled) {
                     Text("Notifications")
                 }
@@ -106,6 +110,7 @@ struct ScheduleCell: View {
             Text(event.date, style: .date)
                 .font(.subheadline)
         }
+        
         .onChange(of: event.notificationEnabled) { newValue in
             if newValue {
                 addNotification(title: event.title)
@@ -113,6 +118,8 @@ struct ScheduleCell: View {
                 //TODO: remove notification
             }
         }
+//        .background(Color.blue.opacity(0.2))
+//        .scrollContentBackground(.hidden)
     }
     func addNotification(title: String) {
         authorizeIfNeeded { (granted) in
@@ -125,6 +132,7 @@ struct ScheduleCell: View {
             }
             
             guard event.notificationEnabled else {
+                UITableView.appearance().backgroundColor = .clear
                 return  // If notifications are not enabled, return early
             }
             

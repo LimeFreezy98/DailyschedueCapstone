@@ -121,6 +121,7 @@ struct SecondAddEditView: View {
                 }
             }
             .padding()
+            .background(Color.blue.opacity(0.2))
             .navigationBarTitle("Add/Edit Daily")
         }
     }

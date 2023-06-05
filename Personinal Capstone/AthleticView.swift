@@ -17,7 +17,7 @@ struct AthleticActivity: Identifiable {
 }
 
 struct AthleticView: View {
-//    @Binding var eventStorage: Events
+//    @Binding var athleyicStorage: Event
     @State private var activities: [AthleticActivity] = []
     
     var body: some View {
@@ -35,6 +35,7 @@ struct AthleticView: View {
                 }
             )
             .background(Color.blue.opacity(0.2))
+            .scrollContentBackground(.hidden)
         }
         .onAppear {
             requestNotificationAuthorization()
@@ -120,7 +121,7 @@ struct AthleticListCell: View {
             }
         }
         .padding()
-        .background(activity.isChecked ? Color.green.opacity(0.2) : Color.clear)
+//        .background(activity.isChecked ? Color.green.opacity(0.2) : Color.clear)
     }
 }
 

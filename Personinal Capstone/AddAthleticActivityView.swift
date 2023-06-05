@@ -17,44 +17,46 @@ struct AddAthleticActivityView: View {
     let addActivity: (AthleticActivity) -> Void
     
     var body: some View {
-        VStack {
-            TextField("Activity Name", text: $activityName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            
-            Stepper(value: $duration, in: 0...120, step: 1) {
-                Text("Duration: \(duration) mins")
-            }
-            .padding()
-            
-            Toggle(isOn: $notificationEnabled) {
-                Text("Enable Notification")
-            }
-            .padding()
-            
-            Button(action: {
-                let newActivity = AthleticActivity(id: UUID().uuidString, title: activityName, duration: duration, isChecked: false, notificationEnabled: notificationEnabled)
-                addActivity(newActivity)
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Add Activity")
+            ZStack {
+                Color.blue.opacity(0.2)
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    TextField("Activity Name", text: $activityName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    Stepper(value: $duration, in: 0...120, step: 1) {
+                        Text("Duration: \(duration) mins")
+                    }
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .background(Color.blue.opacity(0.2))
+                    
+                    Toggle(isOn: $notificationEnabled) {
+                        Text("Enable Notification")
+                    }
+                    .padding()
+                    
+                    Button(action: {
+                        let newActivity = AthleticActivity(id: UUID().uuidString, title: activityName, duration: duration, isChecked: false, notificationEnabled: notificationEnabled)
+                        addActivity(newActivity)
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Add Activity")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                }
             }
-            .background(Color.blue.opacity(0.2))
+            .navigationBarTitle("Add Athletic Activity")
+            .onDisappear {
+                // Ensure the presentation mode is reset when the view disappears
+                presentationMode.wrappedValue.dismiss()
+            }
         }
-        .padding()
-        .background(Color.blue.opacity(0.2))
-        .onDisappear {
-                   // Ensure the presentation mode is reset when the view disappears
-                   presentationMode.wrappedValue.dismiss()
-               }
     }
-}
 
 //struct AddAthleticActivityView_Previews: PreviewProvider {
 //    static var previews: some View {

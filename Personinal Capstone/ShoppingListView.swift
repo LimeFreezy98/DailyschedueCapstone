@@ -23,7 +23,7 @@ class ShoppingList: ObservableObject {
 
 struct ShoppingListView: View {
     @StateObject private var shoppingList = ShoppingList()
-
+//            @Binding var ShopStorage: Event
     var body: some View {
         
         NavigationView {
@@ -39,7 +39,8 @@ struct ShoppingListView: View {
                     Image(systemName: "plus")
                 }
             )
-            .background(Color.green.opacity(0.2))
+            .background(Color.blue.opacity(0.2))
+            .scrollContentBackground(.hidden)
         }
     }
 

@@ -14,41 +14,46 @@ struct AddNoteView: View {
     @State private var newNoteDescription = ""
 
     var body: some View {
-        VStack {
-            TextField("Title", text: $newNoteTitle)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            ZStack { // Use a ZStack as the root view
+                Color.blue.opacity(0.2) // Set the background color for the entire view
 
-            TextEditor(text: $newNoteDescription)
-                .frame(height: 200)
-                .overlay(
-                    VStack(alignment: .leading, spacing: 4) {
-                        if newNoteDescription.isEmpty {
-                            Text("Enter description")
-                                .foregroundColor(.gray)
-                        }
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    TextField("Title", text: $newNoteTitle)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+
+                    TextEditor(text: $newNoteDescription)
+                        .frame(height: 200)
+                        .overlay(
+                            VStack(alignment: .leading, spacing: 4) {
+                                if newNoteDescription.isEmpty {
+                                    Text("Enter description")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .padding(.horizontal, 8)
+                            .opacity(newNoteDescription.isEmpty ? 1 : 0)
+                            .allowsHitTesting(false)
+                        )
+                        .padding()
+
+                    Button(action: {
+                        let newNote = Note(title: newNoteTitle, description: newNoteDescription)
+                        notes.append(newNote)
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Add Note")
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
-                    .padding(.horizontal, 8)
-                    .opacity(newNoteDescription.isEmpty ? 1 : 0)
-                    .allowsHitTesting(false)
-                )
-                .padding()
-
-            Button(action: {
-                let newNote = Note(title: newNoteTitle, description: newNoteDescription)
-                notes.append(newNote)
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Add Note")
-                    .fontWeight(.bold)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                }
             }
-            .padding()
+            .navigationBarTitle("Add Note")
         }
-        .navigationBarTitle("Add Note")
     }
-}
